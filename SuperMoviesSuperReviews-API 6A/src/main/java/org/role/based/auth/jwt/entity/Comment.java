@@ -31,8 +31,8 @@ public class Comment {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "moviename")
-	private String moviename;
+//	@Column(name = "moviename")
+//	private String moviename;
 	
 	@Lob
 	@Column(name = "comment", length=512)

@@ -67,7 +67,7 @@ public class CommentController {
 
 		comment1.setComment(com.getComment());
 		comment1.setRating(com.getRating());
-		comment1.setMoviename(com.getMoviename());
+		//comment1.setMoviename(com.getMoviename());
 		//comment1.setCreatedat(date);
 		//comment1.setUpdatedat(date);
 		return commentRepository.save(comment1);
@@ -95,7 +95,7 @@ public class CommentController {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
 		String date = simpleDateFormat.format(new Date());
-		comment.setMoviename(commentDetails.getMoviename());
+		//comment.setMoviename(commentDetails.getMoviename());
 		comment.setComment(commentDetails.getComment());
 		comment.setRating(commentDetails.getRating());
 		//comment.setCreatedat(date);
