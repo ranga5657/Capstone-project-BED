@@ -1,6 +1,7 @@
 
 package org.role.based.auth.jwt.controller;
 
+import java.net.URI;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,12 +11,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.role.based.auth.jwt.entity.AdminData;
+import org.role.based.auth.jwt.entity.Comment;
 import org.role.based.auth.jwt.exception.movies.ResourceNotFoundException;
 import org.role.based.auth.jwt.repo.AdminRepository;
+import org.role.based.auth.jwt.repo.CommentRepository;
 import org.role.based.auth.jwt.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,10 +29,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 
@@ -41,6 +47,9 @@ public class MoviesCrudController {
 
 	@Autowired
 	AdminService adminService;
+	
+	@Autowired
+	CommentRepository commentRepository;
 
 	@SuppressWarnings("unused")
 	private Date rDate;
@@ -60,6 +69,36 @@ public class MoviesCrudController {
 		AdminData adminData = adminRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Movie not found for this id :: " + id));
 		return ResponseEntity.ok().body(adminData);
+	}
+	
+	
+	@GetMapping("/movies/{id}/comments")
+	public List<Comment>retriveCommentsForMovie(@PathVariable long id) throws ResourceNotFoundException{
+		Optional<AdminData> adminData = adminRepository.findById(id);
+		
+		if(adminData.isEmpty())
+			throw new ResourceNotFoundException("id:" + id);
+		return adminData.get().getComments();
+	}
+	
+	
+	@PostMapping("/movies/{id}/comments")
+	public ResponseEntity<Object> createCommentForMovies(@PathVariable long id, @Valid @RequestBody Comment comments) throws ResourceNotFoundException{
+		Optional<AdminData> adminData = adminRepository.findById(id);
+		
+		if(adminData.isEmpty())
+			throw new ResourceNotFoundException("id:"+id);
+		comments.setAdminData(adminData.get());
+		
+		Comment savedComment = commentRepository.save(comments);
+		
+		URI location=ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(savedComment.getId())
+				.toUri();
+		
+		return ResponseEntity.created(location).build();
+	
 	}
 
 	

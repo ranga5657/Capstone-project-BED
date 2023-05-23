@@ -2,11 +2,15 @@ package org.role.based.auth.jwt.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,11 +41,9 @@ public class Comment {
 	@Column(name = "rating")
 	private float rating;
 
-	@Column(name = "createdat", nullable = false, updatable = false)
-	private String createdat;
-
-	@Column(name = "updatedat", nullable = false)
-	private String updatedat;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private AdminData adminData;
 	
 	
 }

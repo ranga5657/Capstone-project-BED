@@ -1,6 +1,7 @@
 package org.role.based.auth.jwt.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -83,5 +87,9 @@ public class AdminData implements Serializable {
 	@Lob
 	@Column(name = "watch_movie", length = 512)
 	private String watchMovie;
+	
+	@OneToMany(mappedBy = "adminData")
+	@JsonIgnore
+	private List<Comment> comments;
 
 }
