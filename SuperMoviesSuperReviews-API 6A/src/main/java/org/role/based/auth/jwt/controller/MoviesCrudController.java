@@ -29,6 +29,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -112,13 +113,13 @@ public class MoviesCrudController {
 	    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	  }
 	
-	 @PutMapping("/comments/{id}")
+	 @PatchMapping("/comments/{id}")
 	  public ResponseEntity<Comment> updateComment(@PathVariable("id") long id, @RequestBody Comment commentRequest) throws ResourceNotFoundException {
 	    Comment comment = commentRepository.findById(id)
 	        .orElseThrow(() -> new ResourceNotFoundException("CommentId " + id + "not found"));
 
 	    comment.setComment(commentRequest.getComment());
-
+	    comment.setRating(commentRequest.getRating());
 	    return new ResponseEntity<>(commentRepository.save(comment), HttpStatus.OK);
 	  }  
 	
