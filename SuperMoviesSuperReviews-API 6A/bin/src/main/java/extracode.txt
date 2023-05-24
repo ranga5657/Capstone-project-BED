@@ -1,0 +1,519 @@
+ IN MOVIE CRUD CONTROLLER
+ 
+FROM LINE 75 
+
+	// for getting all movies with details from admin db
+
+	// for getting movies list from user db;
+
+//	//@GetMapping("/all-movies")
+//	public List<MovieData> findallMovies() {
+//		return movieDataRepository.findAll();
+//
+//	}
+
+
+ IN MOVIE CRUD CONTROLLER
+ 
+ FROM LINE 124
+  
+ 
+ 
+
+
+
+//		MovieData movieData = new MovieData();
+//		movieData.setDirector(director);
+//		movieData.setMoviename(moviename);
+//
+//		movieData.setAdmin(admin);
+//		movieData.setArtists(artists);
+//		movieData.setSummary(summary);
+//		movieData.setWatch_movie(watchMovie);
+//		movieData.setGenre(genre);
+//		movieData.setLang(lang);
+//		movieData.setProducer(producer);
+//		movieData.setUpdatedat(date);
+//		movieData.setFiletype(file.getContentType());
+//		movieData.setReleasedate(releasedate);
+//		movieData.setFilename(file.getOriginalFilename());
+//		movieData.setCreatedat(date);
+//		movieData.setImage(MovieData.builder().image(ImageUtility.compressImage(file.getBytes())).build().getImage());
+//		movieDataRepository.save(movieData);
+ 
+
+
+FROM BEST MOVIE CONTROLLER 
+LINE 45
+	
+//
+//	@GetMapping("/currently-in-theatres")
+//
+//	public ResponseEntity<List<AdminData>> getcurrentMoviesintheatre() {
+//
+//		List<AdminData> theatreMovieList = new ArrayList<AdminData>();
+//
+//		DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+//
+//		List<AdminData> movieDatalist = adminRepository.findAll();
+//
+//		if (movieDatalist != null) {
+//
+//			movieDatalist.stream().forEach(movie -> {
+//
+//				try {
+//
+//					Date rDate = format.parse(movie.getReleasedate());
+//					System.out.println("releasedate="+rDate);
+//					
+//					Calendar cal = Calendar.getInstance();  
+//					System.out.println("Current Date = " + cal.getTime()); 
+//			        cal.set(Calendar.HOUR_OF_DAY, 0);
+//			        cal.set(Calendar.MINUTE, 0);
+//			        cal.set(Calendar.SECOND, 0);
+//			        cal.set(Calendar.MILLISECOND, 0);
+//			        Date currentdate = cal.getTime();
+//					
+//			        cal.add(Calendar.DATE, -7);
+//					
+//					Date minus = cal.getTime();
+//					System.out.println("after substracting="+minus);
+//					
+//					//if (minusfive.equals(rDate)) {
+//					if (rDate.before(currentdate)&&rDate.after(minus))  {
+//					
+//						
+//                     theatreMovieList.add(movie);
+//
+//					}
+//
+//				} catch (ParseException e) {
+//
+//					// TODO Auto-generated catch block
+//
+//					e.printStackTrace();
+//
+//				}
+//
+//			});
+//
+//		}
+//
+//		return ResponseEntity.ok(theatreMovieList);
+//
+//	}
+
+
+
+
+
+
+
+
+
+FROM BEST MOVIE CONREOLLER
+
+LINE 108
+
+
+
+//	@GetMapping("/currently-in-theatres")
+//
+//	public ResponseEntity<List<AdminData>> Moviesintheatre() {
+//
+//		List<AdminData> theatreMovieList = new ArrayList<AdminData>();
+//
+//		DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+//
+//		List<AdminData> movieDatalist = adminRepository.findAll();
+//
+//		if (movieDatalist != null) {
+//
+//			movieDatalist.stream().forEach(movie -> {
+//
+//				try {
+//
+//					Date rDate = format.parse(movie.getReleasedate());
+//					System.out.println("releasedate="+rDate);
+//					
+//					Calendar cal = Calendar.getInstance();  
+//					System.out.println("Current Date = " + cal.getTime()); 
+//			        cal.set(Calendar.HOUR_OF_DAY, 0);
+//			        cal.set(Calendar.MINUTE, 0);
+//			        cal.set(Calendar.SECOND, 0);
+//			        cal.set(Calendar.MILLISECOND, 0);
+//			        Date currentdate = cal.getTime();
+//					
+//			        cal.add(Calendar.DATE, -10);
+//					
+//					Date minus = cal.getTime();
+//					System.out.println("after substracting="+minus);
+//					
+//					//if (minusfive.equals(rDate)) {
+//					if (rDate.before(currentdate)&&rDate.after(minus))  {
+//					
+//						
+//                     theatreMovieList.add(movie);
+//
+//					}
+//
+//				} catch (ParseException e) {
+//
+//					// TODO Auto-generated catch block
+//
+//					e.printStackTrace();
+//
+//				}
+//
+//			});
+//
+//		}
+//
+//		return ResponseEntity.ok(theatreMovieList);
+//
+//	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IN MOVIECRUDCONTROLLER CODE FROM LINE 156
+
+// put method
+
+//	@RequestMapping(value = "/update-movie/{id}", method = RequestMethod.PUT, consumes = {
+//			"multipart/form-data" }, produces = { MediaType.APPLICATION_JSON_VALUE })
+//	public ResponseEntity<ImageUploadResponse> update_moviebyId(
+//
+//			@PathVariable(value = "id") Long id,
+//			// AdminData movieDetails,
+//
+//			@RequestParam("image") MultipartFile file, @RequestParam("director") String director,
+//			@RequestParam("watch_movie") String watchMovie, @RequestParam("moviename") String moviename,
+//			@RequestParam("admin") String admin, @RequestParam("artists") String artists,
+//			@RequestParam("summary") String summary, @RequestParam("genre") String genre,
+//			@RequestParam("lang") String lang, @RequestParam("producer") String producer,
+//			@RequestParam("releasedate") String releasedate) throws ResourceNotFoundException, IOException {
+//		AdminData adminservice = adminRepository.findById(id)
+//				.orElseThrow(() -> new ResourceNotFoundException("Movie not found for this id :: " + id));
+//
+//		String pattern = "dd/MM/yyyy hh:mm:ss";
+//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+//
+//		String date = simpleDateFormat.format(new Date());
+//		adminservice.setDirector(director);
+//		adminservice.setMoviename(moviename);
+//		adminservice.setAdmin(admin);
+//		adminservice.setWatchMovie(watchMovie);
+//		adminservice.setArtists(artists);
+//		adminservice.setSummary(summary);
+//		adminservice.setGenre(genre);
+//		adminservice.setLang(lang);
+//		adminservice.setProducer(producer);
+//		adminservice.setUpdatedat(date);
+//		adminservice.setFiletype(file.getContentType());
+//		adminservice.setReleasedate(releasedate);
+//		adminservice.setFilename(file.getOriginalFilename());
+//		adminservice.setCreatedat(date);
+//		adminservice
+//				.setImage(AdminData.builder().image(ImageUtility.compressImage(file.getBytes())).build().getImage());
+//		adminRepository.save(adminservice);
+//
+//		MovieData movieData = new MovieData();
+//		movieData.setDirector(director);
+//		movieData.setMoviename(moviename);
+//
+//		movieData.setAdmin(admin);
+//		movieData.setArtists(artists);
+//		movieData.setSummary(summary);
+//		movieData.setWatch_movie(watchMovie);
+//		movieData.setGenre(genre);
+//		movieData.setLang(lang);
+//		movieData.setProducer(producer);
+//		movieData.setUpdatedat(date);
+//		movieData.setFiletype(file.getContentType());
+//		movieData.setReleasedate(releasedate);
+//		movieData.setFilename(file.getOriginalFilename());
+//		movieData.setCreatedat(date);
+//		movieData.setImage(MovieData.builder().image(ImageUtility.compressImage(file.getBytes())).build().getImage());
+//		movieDataRepository.save(movieData);
+//
+//		return ResponseEntity.status(HttpStatus.OK)
+//				.body(new ImageUploadResponse("Data updated successfully for Movie id  " + adminservice.getId() + " "
+//						+ " and filename: " + file.getOriginalFilename()));
+//	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from moviescrud controller
+
+
+	// @PreAuthorize("hasRole('Admin')")
+
+	// post method
+//
+//	@RequestMapping(value = "/upload/image/data", method = RequestMethod.POST,
+//			consumes = {"multipart/form-data" }, 
+//			produces = { MediaType.APPLICATION_JSON_VALUE })
+	
+	//create movie with image as string
+//	@PostMapping("/create/movie")
+//	public AdminData uplaodImageData(
+//			@RequestParam("image") String image,
+//			@RequestParam("director") String director, @RequestParam("watch_movie") String watchMovie,
+//			@RequestParam("moviename") String moviename, @RequestParam("admin") String admin,
+//			@RequestParam("artists") String artists, @RequestParam("summary") String summary,
+//			@RequestParam("genre") String genre, @RequestParam("lang") String lang,
+//			@RequestParam("producer") String producer, @RequestParam("releasedate") String releasedate)
+//			throws IOException {
+//
+//		AdminData adminservice = new AdminData();
+//		String pattern = "dd/MM/yyyy hh:mm:ss";
+//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+//
+//		String date = simpleDateFormat.format(new Date());
+//		adminservice.setDirector(director);
+//		adminservice.setMoviename(moviename);
+//		
+//		// moviename, director, releasedate, producer, langauge, genre, watchmovie, admin,artists, summary,
+//		adminservice.setAdmin(admin);
+//		adminservice.setWatchMovie(watchMovie);
+//		adminservice.setArtists(artists);
+//		adminservice.setSummary(summary);
+//		adminservice.setGenre(genre);
+//		adminservice.setLang(lang);
+//		adminservice.setProducer(producer);
+//		adminservice.setUpdatedat(date);
+//		adminservice.setImage(image);
+//		//adminservice.setFiletype(file.getContentType());
+//		adminservice.setReleasedate(releasedate);
+//		//adminservice.setFilename(file.getOriginalFilename());
+//		adminservice.setCreatedat(date);
+////		adminservice
+////				.setImage(AdminData.builder().image(ImageUtility.compressImage(file.getBytes())).build().getImage());
+//		return adminRepository.save(adminservice);
+//
+//		//file.getOriginalFilename()));
+//	}
+
+
+	// @PreAuthorize("hasRole('Admin')")
+
+	// post method
+	
+	//create movie with image as blob
+
+//	@RequestMapping(value = "/upload/image/data", method = RequestMethod.POST, consumes = {
+//			"multipart/form-data" }, produces = { MediaType.APPLICATION_JSON_VALUE })
+//	public ResponseEntity<ImageUploadResponse> uplaodImageData(@RequestParam("image") MultipartFile file,
+//			@RequestParam("director") String director, @RequestParam("watch_movie") String watchMovie,
+//			@RequestParam("moviename") String moviename, @RequestParam("admin") String admin,
+//			@RequestParam("artists") String artists, @RequestParam("summary") String summary,
+//			@RequestParam("genre") String genre, @RequestParam("lang") String lang,
+//			@RequestParam("producer") String producer, @RequestParam("releasedate") String releasedate)
+//			throws IOException {
+//
+//		AdminData adminservice = new AdminData();
+//		String pattern = "dd/MM/yyyy hh:mm:ss";
+//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+//
+//		String date = simpleDateFormat.format(new Date());
+//		adminservice.setDirector(director);
+//		adminservice.setMoviename(moviename);
+//		
+//		// moviename, director, releasedate, producer, langauge, genre, watchmovie, admin,artists, summary,
+//		adminservice.setAdmin(admin);
+//		adminservice.setWatchMovie(watchMovie);
+//		adminservice.setArtists(artists);
+//		adminservice.setSummary(summary);
+//		adminservice.setGenre(genre);
+//		adminservice.setLang(lang);
+//		adminservice.setProducer(producer);
+//		adminservice.setUpdatedat(date);
+//		adminservice.setFiletype(file.getContentType());
+//		adminservice.setReleasedate(releasedate);
+//		adminservice.setFilename(file.getOriginalFilename());
+//		adminservice.setCreatedat(date);
+//		adminservice
+//				.setImage(AdminData.builder().image(ImageUtility.compressImage(file.getBytes())).build().getImage());
+//		adminRepository.save(adminservice);
+//
+//		return ResponseEntity.status(HttpStatus.OK)
+//				.body(new ImageUploadResponse("Data uploaded successfully: " + file.getOriginalFilename()));
+//	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@PreAuthorize("hasRole('Admin')")
+	@PostMapping("/upload/image/data")
+
+    public AdminData uplaodImageData(
+
+           
+
+            //@RequestParam("director") String director, //
+            
+            @RequestParam("moviename") String moviename,
+            @RequestParam("director") String director,
+            @RequestParam("admin") String admin,//
+            
+            @RequestParam("watch_movie") String watchMovie,//
+//
+            @RequestParam("artists") String artists,//
+            @RequestParam("summary") String summary,//
+
+            @RequestParam("picture") String picture,
+            
+            @RequestParam("genre") String genre, //
+            
+            @RequestParam("lang") String lang,//
+
+            @RequestParam("producer") String producer, //
+            @RequestParam("releasedate") String releasedate //
+            )
+
+            throws IOException {
+
+
+
+        AdminData adminservice = new AdminData();
+
+        String pattern = "dd/MM/yyyy hh:mm:ss";
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+
+
+        String date = simpleDateFormat.format(new Date());
+
+        
+        adminservice.setMoviename(moviename);//
+ 
+        adminservice.setDirector(director);//
+
+
+        // moviename, director, releasedate, producer, langauge, genre, watchmovie, admin,artists, summary,
+
+        adminservice.setAdmin(admin);//
+
+        adminservice.setWatchMovie(watchMovie);//
+
+        adminservice.setArtists(artists);//
+
+        adminservice.setSummary(summary);//
+
+        adminservice.setGenre(genre);//
+
+        adminservice.setLang(lang);//
+
+        adminservice.setProducer(producer);
+
+        adminservice.setUpdatedat(date);
+
+        adminservice.setPicture(picture);
+
+        //adminservice.setFiletype(file.getContentType());
+
+        adminservice.setReleasedate(releasedate);
+
+        //adminservice.setFilename(file.getOriginalFilename());
+
+        adminservice.setCreatedat(date);
+
+//        adminservice
+
+//                .setImage(AdminData.builder().image(ImageUtility.compressImage(file.getBytes())).build().getImage());
+
+        return adminRepository.save(adminservice);
+
+
+
+        //file.getOriginalFilename()));
+
+    }
+
+    
+    
+    
+    line 183 in movies crud controller
+    
+	// all data now only coming filename, filetype
+	// @PreAuthorize("hasRole('User') or hasRole('Admin')")
+	@GetMapping(path = { "/get/image/info/{filename}" })
+	public Image getImageDetails(@PathVariable("filename") String filename) throws IOException {
+
+		final Optional<Image> dbImage = imageRepository.findByfilename(filename);
+
+		return Image.builder().filename(dbImage.get().getFilename()).filetype(dbImage.get().getFiletype())
+				.image(ImageUtility.decompressImage(dbImage.get().getImage())).build();
+	}
+
+	// to get image of that adminData by file name
+
+	// @PreAuthorize("hasRole('User') or hasRole('Admin')")
+
+	@GetMapping(path = { "/get/image/{filename}" })
+	public ResponseEntity<byte[]> getImage(@PathVariable("filename") String filename) throws IOException {
+
+		final Optional<Image> dbImage = imageRepository.findByfilename(filename);
+		return ResponseEntity.ok().contentType(MediaType.valueOf(dbImage.get().getFiletype()))
+				.body(ImageUtility.decompressImage(dbImage.get().getImage()));
+	}
+
+	// WORKING for all action, genre,
+
+	@GetMapping("all-movies/genre/{genre}")
+
+	public Optional<AdminData> fetchMovieByGenre(@PathVariable("genre") String genre) {
+
+		return adminService.getByGenre(genre);
+	}
