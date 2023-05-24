@@ -22,6 +22,7 @@ import org.role.based.auth.jwt.repo.AdminRepository;
 import org.role.based.auth.jwt.repo.CommentRepository;
 import org.role.based.auth.jwt.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -100,6 +102,35 @@ public class MoviesCrudController {
 		return ResponseEntity.created(location).build();
 	
 	}
+	
+	
+//	@PreAuthorize("hasRole('Admin')")
+	@DeleteMapping("/comments/{id}")
+	  public ResponseEntity<HttpStatus> deleteComment(@PathVariable("id") long id) {
+	    commentRepository.deleteById(id);
+
+	    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	  }
+	
+	 @PutMapping("/comments/{id}")
+	  public ResponseEntity<Comment> updateComment(@PathVariable("id") long id, @RequestBody Comment commentRequest) throws ResourceNotFoundException {
+	    Comment comment = commentRepository.findById(id)
+	        .orElseThrow(() -> new ResourceNotFoundException("CommentId " + id + "not found"));
+
+	    comment.setComment(commentRequest.getComment());
+
+	    return new ResponseEntity<>(commentRepository.save(comment), HttpStatus.OK);
+	  }
+	
+//	  @DeleteMapping("/movies/{id}/comments")
+//	  public ResponseEntity<List<Comment>> deleteAllCommentsOfAdminData(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+//	    if (!adminRepository.existsById(id)) {
+//	      throw new ResourceNotFoundException("Not found Tutorial with id = " + id);
+//	    }
+//
+//	    commentRepository.deleteById(id);
+//	    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//	  }
 
 	
 	

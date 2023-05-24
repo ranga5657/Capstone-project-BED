@@ -32,7 +32,6 @@ public class Comment {
 	private Long id;
 
 
-	
 	@Lob
 	@Column(name = "comment", length=512)
 	private String comment;
