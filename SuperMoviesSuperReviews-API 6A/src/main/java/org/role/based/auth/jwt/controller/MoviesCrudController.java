@@ -120,7 +120,7 @@ public class MoviesCrudController {
 	    comment.setComment(commentRequest.getComment());
 
 	    return new ResponseEntity<>(commentRepository.save(comment), HttpStatus.OK);
-	  }
+	  }  
 	
 //	  @DeleteMapping("/movies/{id}/comments")
 //	  public ResponseEntity<List<Comment>> deleteAllCommentsOfAdminData(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
